@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PromptCAD DSL Schema",
+  "type": "object",
+  "required": ["version", "operations"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "enum": ["1.0"]
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/operation"
+      }
+    }
+  },
+  "definitions": {
+    "operation": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["box", "cylinder", "sphere", "union", "subtract", "fillet"]
+        },
+        "params": {
+          "type": "object"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
